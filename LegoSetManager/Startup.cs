@@ -67,7 +67,7 @@ namespace LegoSetManager
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(Configuration.GetValue<string>("ExceptionUri"));
                 app.UseHsts();
             }
 

@@ -40,15 +40,18 @@ namespace LegoSetManager
 
             services.AddRazorPages().AddMicrosoftIdentityUI();
 
-            services.AddAuthorization(options => {
-                options.AddPolicy(AzureConfig.GetValue<string>("AllowedGroupName"), PolicyBuilder => {
+            services.AddAuthorization(options => 
+            {
+                options.AddPolicy(AzureConfig.GetValue<string>("AllowedGroupName"), PolicyBuilder => 
+                {
                     PolicyBuilder.RequireClaim("groups", AzureConfig.GetValue<string>("AllowedGroupId"));
                 });
             });
 
             services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
-                options.Events.OnSignedOutCallbackRedirect += context => {
+                options.Events.OnSignedOutCallbackRedirect += context => 
+                {
                     context.Response.Redirect(AzureConfig.GetValue<string>("SignOutRedirectUri"));
                     context.HandleResponse();
 
@@ -71,13 +74,16 @@ namespace LegoSetManager
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/Exception/Code/{0}");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints => 
+            {
                 endpoints.MapControllerRoute(
                     name: "home",
                     pattern: "{controller=Home}/{action=Index}/{id?}"

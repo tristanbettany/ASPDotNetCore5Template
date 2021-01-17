@@ -2,6 +2,7 @@ namespace LegoSetManager.Models
 {
     public class ErrorViewModel
     {
+        public int Code { get; set; }
         public string RequestId { get; set; }
 
         public bool ShowRequestId()

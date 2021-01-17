@@ -1,19 +1,17 @@
 ﻿@using LegoSetManager.Models
 @model ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Error " + Model.Code;
 }
 
 <div class="container mx-auto mt-20px text-center">
 
-    <h1 class="text-30px">Error!</h1>
+    <h1 class="text-30px">Error! @Model.Code</h1>
     <h2 class="text-24px">An error occurred while processing your request. Please contact support.</h2>
 
     @if (Model.ShowRequestId())
     {
-        <p>
-            <strong>Request ID:</strong> <code>@Model.RequestId</code>
-        </p>
+        <p class="pt-20px"><strong>Request ID:</strong> <code>@Model.RequestId</code></p>
     }
 
 </div>

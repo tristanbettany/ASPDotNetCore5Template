@@ -19,8 +19,21 @@ namespace LegoSetManager.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index()
         {
-            return View(new ErrorViewModel
+            return View("Exception", new ErrorViewModel
             {
+                Code = 500,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
+        }
+
+        [AllowAnonymous]
+        [Route("/Exception/Code/{code:int}")]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Code(int code)
+        {
+            return View("Exception", new ErrorViewModel
+            {
+                Code = code,
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });
         }

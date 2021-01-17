@@ -1,0 +1,32 @@
+{
+  "name": "LegoSetManager",
+  "version": "1.0.0",
+  "description": "Lego Set Manager",
+  "author": "SubVoxel Studios <tristan.bettany@subvoxelstudios.com>",
+  "devDependencies": {
+    "@babel/core": "^7.12.*",
+    "@babel/preset-env": "^7.12.*",
+    "gulp": "^4.0.*",
+    "gulp-autoprefixer": "^7.0.*",
+    "gulp-babel": "^8.0.*",
+    "gulp-concat": "^2.6.*",
+    "gulp-clean-css": "^4.3.*",
+    "gulp-plumber": "^1.2.*",
+    "gulp-postcss": "^9.0.*",
+    "gulp-rename": "^2.0.*",
+    "gulp-sass": "^4.1.*",
+    "gulp-uglify": "^3.0.*",
+    "tailwindcss": "^2.0.*",
+    "postcss": "^8.2.*",
+    "autoprefixer": "^10.2.*"
+  },
+  "scripts": {
+    "sass": "node ./node_modules/gulp/bin/gulp.js sass",
+    "js": "node ./node_modules/gulp/bin/gulp.js js",
+    "build": "node ./node_modules/gulp/bin/gulp.js compile",
+    "watch": "node ./node_modules/gulp/bin/gulp.js",
+    "watch-sass": "node ./node_modules/gulp/bin/gulp.js watch-sass",
+    "watch-js": "node ./node_modules/gulp/bin/gulp.js watch-js"
+  },
+  "dependencies": {}
+}

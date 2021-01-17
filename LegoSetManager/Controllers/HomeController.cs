@@ -22,7 +22,7 @@ namespace LegoSetManager.Controllers
         }
 
         [Authorize("Developers")]
-        public IActionResult Privacy()
+        public IActionResult Protected()
         {
             return View();
         }

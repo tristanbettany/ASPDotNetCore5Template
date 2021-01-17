@@ -1,0 +1,27 @@
+﻿@using System.Security.Principal
+
+<header>
+    <nav class="bg-grey-200 px-20px py-15px">
+
+        <div class="flex flex-row justify-center justify-between items-center flex-wrap">
+
+            <div class="flex flex-row w-full sm:w-1/2 justify-end flex-wrap sm:mt-0 hidden sm:block">
+                <a class="my-10px sm:my-0 mx-10px p-10px font-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="my-10px sm:my-0 mx-10px p-10px font-bold" asp-area="" asp-controller="Home" asp-action="Protected">Protected</a>
+            </div>
+
+            <div class="flex flex-row w-full sm:w-1/2 justify-end flex-wrap sm:mt-0 hidden sm:block text-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p class="mx-10px px-10px">Signed in as: @User.Identity.Name</p>
+                    <a class="font-bold my-10px sm:my-0 mx-10px p-10px" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Sign Out</a>
+                }
+                else
+                {
+                    <a class="my-10px sm:my-0 mx-10px p-10px font-bold" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign In</a>
+                }
+            </div>
+        </div>
+
+    </nav>
+</header>

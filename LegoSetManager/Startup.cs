@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using System.Threading.Tasks;
 
 namespace LegoSetManager
 {
@@ -44,6 +45,16 @@ namespace LegoSetManager
                     PolicyBuilder.RequireClaim("groups", AzureConfig.GetValue<string>("AllowedGroupId"));
                 });
             });
+
+            services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
+            {
+                options.Events.OnSignedOutCallbackRedirect += context => {
+                    context.Response.Redirect(AzureConfig.GetValue<string>("SignOutRedirectUri"));
+                    context.HandleResponse();
+
+                    return Task.CompletedTask;
+                };
+            });
         }
 
         public void Configure(
@@ -68,8 +79,13 @@ namespace LegoSetManager
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
-                    name: "default",
+                    name: "home",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "user",
+                    pattern: "{controller=User}/{action=SignedOut}/{id?}"
                 );
 
                 endpoints.MapRazorPages();

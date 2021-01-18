@@ -8,8 +8,10 @@ Instead of bootstrap this uses tailwind, and jquery is simply ripped out because
 
 Structure and organisation of all the files has been refactored.
 
-This contains integration with Azure microsoft login which you can manage by adding your client ID in the secrets,
-alternativley you can remove the integration from the services in the startup file.
+This contains integration with Azure microsoft login which you can manage by adding your azure application credentials
+in the secrets, alternativley you can remove the integration from the services in the startup file.
+
+> Failure to setup your Azure application credentials or remove the integration means you will get errors when starting the website
 
 This contains a seperate project in the solution as the database layer which you can remove if you arent using 
 a database by deleting the lines from the services in the startup file, and removing references.

@@ -1,7 +1,7 @@
 
-namespace ASPDotNetCore5Template.Models
+namespace ASPDotNetCore5Template.ViewModels
 {
-    public class ErrorViewModel
+    public class ExceptionViewModel
     {
         public int Code { get; set; }
         public string RequestId { get; set; }

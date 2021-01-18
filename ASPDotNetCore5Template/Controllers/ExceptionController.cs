@@ -1,4 +1,4 @@
-﻿using ASPDotNetCore5Template.Models;
+﻿using ASPDotNetCore5Template.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -19,7 +19,7 @@ namespace ASPDotNetCore5Template.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index()
         {
-            return View("Exception", new ErrorViewModel
+            return View("Exception", new ExceptionViewModel
             {
                 Code = 500,
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
@@ -31,7 +31,7 @@ namespace ASPDotNetCore5Template.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Code(int code)
         {
-            return View("Exception", new ErrorViewModel
+            return View("Exception", new ExceptionViewModel
             {
                 Code = code,
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier

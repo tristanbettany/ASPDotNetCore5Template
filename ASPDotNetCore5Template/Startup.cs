@@ -10,7 +10,7 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using System.Threading.Tasks;
 
-namespace LegoSetManager
+namespace ASPDotNetCore5Template
 {
     public class Startup
     {
@@ -40,9 +40,9 @@ namespace LegoSetManager
 
             services.AddRazorPages().AddMicrosoftIdentityUI();
 
-            services.AddAuthorization(options => 
+            services.AddAuthorization(options =>
             {
-                options.AddPolicy(AzureConfig.GetValue<string>("AllowedGroupName"), PolicyBuilder => 
+                options.AddPolicy(AzureConfig.GetValue<string>("AllowedGroupName"), PolicyBuilder =>
                 {
                     PolicyBuilder.RequireClaim("groups", AzureConfig.GetValue<string>("AllowedGroupId"));
                 });
@@ -50,7 +50,7 @@ namespace LegoSetManager
 
             services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
-                options.Events.OnSignedOutCallbackRedirect += context => 
+                options.Events.OnSignedOutCallbackRedirect += context =>
                 {
                     context.Response.Redirect(AzureConfig.GetValue<string>("SignOutRedirectUri"));
                     context.HandleResponse();
@@ -61,9 +61,10 @@ namespace LegoSetManager
         }
 
         public void Configure(
-            IApplicationBuilder app, 
+            IApplicationBuilder app,
             IWebHostEnvironment env
-        ) {
+        )
+        {
             if (env.IsDevelopment() == true)
             {
                 app.UseDeveloperExceptionPage();
@@ -82,7 +83,7 @@ namespace LegoSetManager
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => 
+            app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "home",

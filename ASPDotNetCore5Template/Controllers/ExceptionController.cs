@@ -1,10 +1,10 @@
-﻿using LegoSetManager.Models;
+﻿using ASPDotNetCore5Template.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace LegoSetManager.Controllers
+namespace ASPDotNetCore5Template.Controllers
 {
     public class ExceptionController : Controller
     {

@@ -1,4 +1,5 @@
-namespace LegoSetManager.Models
+
+namespace ASPDotNetCore5Template.Models
 {
     public class ErrorViewModel
     {

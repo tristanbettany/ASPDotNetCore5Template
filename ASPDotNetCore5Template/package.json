@@ -1,7 +1,7 @@
 {
-  "name": "LegoSetManager",
+  "name": "ASPDotNetCore5Template",
   "version": "1.0.0",
-  "description": "Lego Set Manager",
+  "description": "ASPDotNetCore5Template",
   "author": "SubVoxel Studios <tristan.bettany@subvoxelstudios.com>",
   "devDependencies": {
     "@babel/core": "^7.12.*",

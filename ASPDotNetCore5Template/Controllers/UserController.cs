@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace LegoSetManager.Controllers
+namespace ASPDotNetCore5Template.Controllers
 {
     public class UserController : Controller
     {

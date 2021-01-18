@@ -1,3 +1,5 @@
+using DataLayer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +28,10 @@ namespace ASPDotNetCore5Template
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<Context>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("DataLayer"));
+            });
+
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(AzureConfig);
 

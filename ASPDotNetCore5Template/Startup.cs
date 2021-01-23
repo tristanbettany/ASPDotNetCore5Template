@@ -11,6 +11,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using System.Collections.Generic;
+using System.Linq;
+using ASPDotNetCore5Template.Helpers;
+using ServiceLayer;
+using DataLayer.Entities;
 
 namespace ASPDotNetCore5Template
 {
@@ -28,7 +36,9 @@ namespace ASPDotNetCore5Template
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => {
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddDbContext<DataLayerContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("DataLayer"));
             });
 
@@ -53,9 +63,11 @@ namespace ASPDotNetCore5Template
                     PolicyBuilder.RequireClaim("groups", AzureConfig.GetValue<string>("AllowedGroupId"));
                 });
             });
-
+            
             services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
+                options.Events.OnTicketReceived += OnTicketReceivedCallback;
+
                 options.Events.OnSignedOutCallbackRedirect += context =>
                 {
                     context.Response.Redirect(AzureConfig.GetValue<string>("SignOutRedirectUri"));
@@ -64,6 +76,23 @@ namespace ASPDotNetCore5Template
                     return Task.CompletedTask;
                 };
             });
+        }
+
+        public static Task OnTicketReceivedCallback(TicketReceivedContext context)
+        {
+            List<Claim> claims = context.Principal.Claims.ToList();
+
+            string userId = claims.FirstOrDefault(context => {
+                return context.Type == ClaimTypes.NameIdentifier;
+            }).Value;
+
+            string email = context.Principal.Identity.Name;
+
+            IUserService service = context.HttpContext.RequestServices.GetService<IUserService>();
+            User userModel = new User { Id = userId, Email = email };
+            service.Add(userModel);
+
+            return Task.CompletedTask;
         }
 
         public void Configure(

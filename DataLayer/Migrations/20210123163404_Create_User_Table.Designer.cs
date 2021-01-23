@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
-    [DbContext(typeof(Context))]
-    [Migration("20210118190830_UserMigration")]
-    partial class UserMigration
+    [DbContext(typeof(DataLayerContext))]
+    [Migration("20210123163404_Create_User_Table")]
+    partial class Create_User_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,15 +23,14 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")

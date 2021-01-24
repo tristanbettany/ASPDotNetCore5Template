@@ -90,6 +90,7 @@ namespace ASPDotNetCore5Template
 
             IUserService service = context.HttpContext.RequestServices.GetService<IUserService>();
             User userModel = new User { Id = userId, Email = email };
+
             service.Add(userModel);
 
             return Task.CompletedTask;

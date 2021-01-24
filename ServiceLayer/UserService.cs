@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
 using System;
+using System.Linq;
 
 namespace ServiceLayer
 {
@@ -15,8 +16,17 @@ namespace ServiceLayer
 
         public void Add(User user)
         {
-            DataLayerContext.Add(user);
-            DataLayerContext.SaveChanges();
+            User existingUser = FindById(user.Id);
+            if (existingUser == default(User))
+            {
+                DataLayerContext.Add(user);
+                DataLayerContext.SaveChanges();
+            }
+        }
+
+        public User FindById(string userId)
+        {
+            return DataLayerContext.Users.FirstOrDefault(row => row.Id == userId);
         }
     }
 }

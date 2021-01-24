@@ -8,5 +8,6 @@ namespace ServiceLayer
     public interface IUserService
     {
         public void Add(User user);
+        public User FindById(string userId);
     }
 }

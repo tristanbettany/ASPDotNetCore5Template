@@ -19,80 +19,28 @@ using System.Linq;
 using ASPDotNetCore5Template.Helpers;
 using ServiceLayer;
 using DataLayer.Entities;
+using ASPDotNetCore5Template.Providers;
+using ASPDotNetCore5Template.Config;
 
 namespace ASPDotNetCore5Template
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        private IConfigurationSection AzureConfig { get; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            AzureConfig = Configuration.GetSection("AzureAd");
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(Configuration);
             services.AddScoped<IUserService, UserService>();
 
-            services.AddDbContext<DataLayerContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("DataLayer"));
-            });
-
-            services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApp(AzureConfig);
-
-            services.AddControllersWithViews(options =>
-            {
-                AuthorizationPolicy policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-
-                options.Filters.Add(new AuthorizeFilter(policy));
-            });
-
-            services.AddRazorPages().AddMicrosoftIdentityUI();
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy(AzureConfig.GetValue<string>("AllowedGroupName"), PolicyBuilder =>
-                {
-                    PolicyBuilder.RequireClaim("groups", AzureConfig.GetValue<string>("AllowedGroupId"));
-                });
-            });
-            
-            services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
-            {
-                options.Events.OnTicketReceived += OnTicketReceivedCallback;
-
-                options.Events.OnSignedOutCallbackRedirect += context =>
-                {
-                    context.Response.Redirect(AzureConfig.GetValue<string>("SignOutRedirectUri"));
-                    context.HandleResponse();
-
-                    return Task.CompletedTask;
-                };
-            });
-        }
-
-        public static Task OnTicketReceivedCallback(TicketReceivedContext context)
-        {
-            List<Claim> claims = context.Principal.Claims.ToList();
-
-            string userId = claims.FirstOrDefault(context => {
-                return context.Type == ClaimTypes.NameIdentifier;
-            }).Value;
-
-            string email = context.Principal.Identity.Name;
-
-            IUserService service = context.HttpContext.RequestServices.GetService<IUserService>();
-            User userModel = new User { Id = userId, Email = email };
-            service.Add(userModel);
-
-            return Task.CompletedTask;
+            DbProvider.Apply(services, Configuration);
+            AuthProvider.Apply(services, Configuration);
+            MvcProvider.Apply(services, Configuration);
         }
 
         public void Configure(
@@ -100,17 +48,7 @@ namespace ASPDotNetCore5Template
             IWebHostEnvironment env
         )
         {
-            if (env.IsDevelopment() == true)
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler(Configuration.GetValue<string>("ExceptionUri"));
-                app.UseHsts();
-            }
-
-            app.UseStatusCodePagesWithReExecute("/Exception/Code/{0}");
+            ExceptionConfig.Apply(app, env, Configuration);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -118,20 +56,7 @@ namespace ASPDotNetCore5Template
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "home",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
-                );
-
-                endpoints.MapControllerRoute(
-                    name: "user",
-                    pattern: "{controller=User}/{action=SignedOut}/{id?}"
-                );
-
-                endpoints.MapRazorPages();
-            });
+            RoutingConfig.Apply(app, env, Configuration);
         }
     }
 }

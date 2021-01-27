@@ -1,4 +1,3 @@
-
 namespace ASPDotNetCore5Template.ViewModels
 {
     public class ExceptionViewModel

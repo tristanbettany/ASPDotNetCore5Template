@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ASPDotNetCore5Template.Helpers
+﻿namespace ASPDotNetCore5Template.Helpers
 {
     public static class Extensions
     {

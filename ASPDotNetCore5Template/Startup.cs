@@ -1,26 +1,11 @@
-using DataLayer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.UI;
-using System.Threading.Tasks;
-using System;
-using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
-using System.Collections.Generic;
-using System.Linq;
-using ASPDotNetCore5Template.Helpers;
 using ServiceLayer;
-using DataLayer.Entities;
 using ASPDotNetCore5Template.Providers;
 using ASPDotNetCore5Template.Config;
+using ServiceLayer.Interfaces;
 
 namespace ASPDotNetCore5Template
 {

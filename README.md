@@ -18,15 +18,21 @@ a database by deleting the lines from the services in the startup file, and remo
 
 ## Getting setup
 
-You need to be in the project directory not the root directory as this readme is in the solution directory.
+- Install NPM dependancies by typing
 
 ```
 npm install
 ```
 
-For the above command to work, you must have node version 14 LTS installed.
+> For the above command to work, you must be in the project directory not this root directory 
+and you must have node version 14 LTS installed.
 
-Open the solution in Visual Studio 2019 and open the package manager console. to run the migrations type
+- Open the solution in Visual Studio 2019
+
+Set your connection string to your database in `appsettings.Development.json` or your `secrets.json` file
+which can be accessed by right clicking the project and selecting `manage user secrets`.
+
+- Open the package manager console and run the migrations by typing
 
 ```
 update-database

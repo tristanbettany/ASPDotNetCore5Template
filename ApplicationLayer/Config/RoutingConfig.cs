@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace ASPDotNetCore5Template.Config
+namespace ApplicationLayer.Config
 {
     public static class RoutingConfig
     {

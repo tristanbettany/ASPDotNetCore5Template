@@ -1,5 +1,5 @@
 
-namespace ASPDotNetCore5Template.ViewModels
+namespace ApplicationLayer.ViewModels
 {
     public class ExceptionViewModel
     {

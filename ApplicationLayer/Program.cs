@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace ASPDotNetCore5Template
+namespace ApplicationLayer
 {
     public class Program
     {

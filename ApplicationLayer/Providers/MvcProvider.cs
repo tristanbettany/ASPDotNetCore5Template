@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web.UI;
 
-namespace ASPDotNetCore5Template.Providers
+namespace ApplicationLayer.Providers
 {
     public static class MvcProvider
     {

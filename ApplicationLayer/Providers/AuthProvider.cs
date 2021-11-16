@@ -10,7 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace ASPDotNetCore5Template.Providers
+namespace ApplicationLayer.Providers
 {
     public static class AuthProvider
     {

@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-LegoSetManager_Server-9bb7c7c8-18e1-4fa8-b787-97a6cef87413</UserSecretsId>
+    <UserSecretsId>9bb7c7c8-18e1-4fa8-b787-97a6cef87413</UserSecretsId>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <Nullable>disable</Nullable>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

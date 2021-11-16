@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace ASPDotNetCore5Template.Config
+namespace ApplicationLayer.Config
 {
     public static class ExceptionConfig
     {

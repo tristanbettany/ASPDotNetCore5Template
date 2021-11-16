@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace ASPDotNetCore5Template.Controllers
+namespace ApplicationLayer.Controllers
 {
     public class UserController : Controller
     {

@@ -1,10 +1,10 @@
-﻿using ASPDotNetCore5Template.ViewModels;
+﻿using ApplicationLayer.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace ASPDotNetCore5Template.Controllers
+namespace ApplicationLayer.Controllers
 {
     public class ExceptionController : Controller
     {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ASPDotNetCore5Template.Providers
+namespace ApplicationLayer.Providers
 {
     public static class DbProvider
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ASPDotNetCore5Template.Helpers
+namespace ApplicationLayer.Helpers
 {
     public static class Extensions
     {

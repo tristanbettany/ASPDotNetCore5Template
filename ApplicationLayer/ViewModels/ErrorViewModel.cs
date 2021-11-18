@@ -1,4 +1,3 @@
-
 namespace ApplicationLayer.ViewModels
 {
     public class ExceptionViewModel

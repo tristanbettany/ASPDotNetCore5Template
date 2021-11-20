@@ -20,17 +20,15 @@ a database by deleting the lines from the services in the startup file, and remo
 
 ## Getting setup
 
-### NPM Setup
+### Frontend Setup
 
-Open a console and change to the ApplicationLayer project. Run the following tp Install NPM dependancies
+Open a console and change to the ApplicationLayer project. Run the following to Install dependancies required to build the frontend when you make changes
 
 ```
-npm install
+.\frontend.ps1 init
 ```
 
-> For the above command to work, you must have node version 14 LTS installed.
-
-Open the solution in Microsoft Visual Studio
+> This command runs in a node docker container to save you the pain of dealing with node on your computer
 
 ### Database Setup
 
@@ -40,7 +38,7 @@ Make sure you have started your local SQL database by running this command on yo
 sqllocaldb start MSSQLLocalDB
 ```
 
-This will mean that the default development connection string will work and migrations and data will be done on your localdb. If you want a database with better visual access though you will want to download Microsoft SQL Server Management Studio and get set up a database using that. If you do this you can change you database connection string by right clicking the ApplicationLayer project and selecting `manage user secrets`.
+This will mean that the default development connection string will work and migrations and data will be done on your localdb. If you want a database with better visual access though you will want to download Microsoft SQL Server Management Studio and get set up a database using that. If you do this you can change you database connection string by right clicking the ApplicationLayer project in Visual Studio and selecting `manage user secrets`.
 
 ### Migrations Setup
 
@@ -102,3 +100,17 @@ dotnet watch
 ```
 
 If not using docker or IIS, The site should launch at https://localhost:5001
+
+### Compiling frontend 
+
+To compile frontend assets like Javascript and SASS run the one of the following commands in a console from the ApplicationLayer project
+
+```
+.\frontend.ps1 build:dev
+```
+
+```
+.\frontend.ps1 build:prod
+```
+
+> These commands run in a node docker container to save you the pain of dealing with node on your computer

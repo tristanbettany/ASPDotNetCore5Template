@@ -1,4 +1,4 @@
-﻿const colors = require('tailwindcss/colors')
+const colors = require('tailwindcss/colors')
 
 let SpacingObject = {};
 let Spacing = 5;
@@ -34,7 +34,9 @@ module.exports = {
         fontSize: FontSizeObject,
     },
     variants: {
-        extend: {},
+        extend: {
+            display: ["group-hover"],
+        },
     },
     plugins: [],
 }

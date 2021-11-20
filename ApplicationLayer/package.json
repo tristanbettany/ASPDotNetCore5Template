@@ -1,32 +1,21 @@
 {
-  "name": "ASPDotNetCore5Template",
+  "name": "asp-dotnet-core-5-template",
   "version": "1.0.0",
-  "description": "ASPDotNetCore5Template",
-  "author": "SubVoxel Studios <tristan.bettany@subvoxelstudios.com>",
-  "devDependencies": {
-    "@babel/core": "^7.12.*",
-    "@babel/preset-env": "^7.12.*",
-    "gulp": "^4.0.*",
-    "gulp-autoprefixer": "^7.0.*",
-    "gulp-babel": "^8.0.*",
-    "gulp-concat": "^2.6.*",
-    "gulp-clean-css": "^4.3.*",
-    "gulp-plumber": "^1.2.*",
-    "gulp-postcss": "^9.0.*",
-    "gulp-rename": "^2.0.*",
-    "gulp-sass": "^4.1.*",
-    "gulp-uglify": "^3.0.*",
-    "tailwindcss": "^2.0.*",
-    "postcss": "^8.2.*",
-    "autoprefixer": "^10.2.*"
-  },
+  "description": "ASP Dotnet Core 5 Template",
+  "author": "Tristan Bettany <hi@tristanbettany.com>",
   "scripts": {
-    "sass": "node ./node_modules/gulp/bin/gulp.js sass",
-    "js": "node ./node_modules/gulp/bin/gulp.js js",
-    "build": "node ./node_modules/gulp/bin/gulp.js compile",
-    "watch": "node ./node_modules/gulp/bin/gulp.js",
-    "watch-sass": "node ./node_modules/gulp/bin/gulp.js watch-sass",
-    "watch-js": "node ./node_modules/gulp/bin/gulp.js watch-js"
+    "dev": "npm run development",
+    "development": "mix",
+    "prod": "npm run production",
+    "production": "mix --production"
   },
-  "dependencies": {}
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "laravel-mix": "^6.0.39",
+    "postcss": "^8.3.11",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "tailwindcss": "^2.2.19"
+  }
 }
